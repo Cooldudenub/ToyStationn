@@ -89,9 +89,19 @@ public class MainActivity extends AppCompatActivity {
                         userDetails.put("RegistrationCharges", regCharges.getText().toString());
                         userDetails.put("DateOfMembership", dateOfMembership.getText().toString());
                         userDetails.put("Deposit", deposit.getText().toString());
-                        Toast.makeText(MainActivity.this, UID, Toast.LENGTH_SHORT).show();
                         db.collection("users").document(UID).set(userDetails);
                         Toast.makeText(MainActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                        email.setText("");
+                        pwd.setText("");
+                        nameKid.setText("");
+                        nameMother.setText("");
+                        nameFather.setText("");
+                        phoneMother.setText("");
+                        phoneFather.setText("");
+                        deposit.setText("");
+                        planScheme.setText("");
+                        regCharges.setText("");
+                        dateOfMembership.setText("");
                     } else {
                         Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     }
