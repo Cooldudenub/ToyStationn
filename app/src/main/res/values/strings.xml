@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ToyStation</string>
+    <string name="password">password</string>
+    <string name="email">Email</string>
+    <string name="name_of_kid">Name of Kid</string>
+    <string name="name_of_mother">Name of Mother</string>
+    <string name="name_of_father">Name of Father</string>
+    <string name="mother_phone_no">Mother Phone no.</string>
+    <string name="phone_of_father">Phone of Father</string>
+    <string name="deposit">Deposit</string>
+    <string name="plan_scheme">Plan Scheme</string>
+    <string name="registration_charges">Registration Charges</string>
+    <string name="date_of_membership">Date of Membership</string>
+    <string name="submit">Submit</string>
+</resources>

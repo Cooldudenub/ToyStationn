@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "941482130696",
+    "project_id": "toystation-f2219",
+    "storage_bucket": "toystation-f2219.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941482130696:android:1dffd9d58c8b84b4f100bd",
+        "android_client_info": {
+          "package_name": "com.toylibrary.toystation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941482130696-nuojlbbapf2qsau7uhh9c070oqrrb2gh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvVN6d3VSR3ilwkev4Zuzrz3psnuH8gw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941482130696-nuojlbbapf2qsau7uhh9c070oqrrb2gh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
