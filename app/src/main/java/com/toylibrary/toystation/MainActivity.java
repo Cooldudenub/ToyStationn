@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText email, pwd, nameKid, nameMother, nameFather, phoneMother, phoneFather, deposit, planScheme, regCharges, dateOfMembership;
+    EditText email, pwd, nameKid, nameMother, nameFather, phoneMother, phoneFather, deposit, regCharges, dateOfMembership;
     Button submit;
     FirebaseFirestore db;
     FirebaseUser CurrentUser;
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         nameFather = findViewById(R.id.nameFatherInput);
         phoneMother = findViewById(R.id.phoneMotherInput);
         phoneFather = findViewById(R.id.phoneFatherInput);
-        planScheme = findViewById(R.id.planSchemeInput);
         regCharges = findViewById(R.id.regChargesInput);
         dateOfMembership = findViewById(R.id.dateOfMembershipInput);
         submit = findViewById(R.id.submit);
@@ -59,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 phoneMother.setError("Phone length should be 10!");
             } else if (phoneFather.getText().toString().isEmpty() && (phoneFather.getText().toString().length() != 10)) {
                 phoneFather.setError("Phone length should be 10!");
-            } else if (planScheme.getText().toString().isEmpty()) {
-                planScheme.setError("Name cannot be empty!");
             } else if (regCharges.getText().toString().isEmpty()) {
                 regCharges.setError("Name cannot be empty!");
             } else if (deposit.getText().toString().isEmpty()) {
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         userDetails.put("FatherName", nameFather.getText().toString());
                         userDetails.put("MotherPhone", phoneMother.getText().toString());
                         userDetails.put("FatherPhone", phoneFather.getText().toString());
-                        userDetails.put("PlanScheme", planScheme.getText().toString());
+                        userDetails.put("PlanScheme", "");
                         userDetails.put("RegistrationCharges", regCharges.getText().toString());
                         userDetails.put("DateOfMembership", dateOfMembership.getText().toString());
                         userDetails.put("Deposit", deposit.getText().toString());
@@ -99,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                         phoneMother.setText("");
                         phoneFather.setText("");
                         deposit.setText("");
-                        planScheme.setText("");
                         regCharges.setText("");
                         dateOfMembership.setText("");
                     } else {
