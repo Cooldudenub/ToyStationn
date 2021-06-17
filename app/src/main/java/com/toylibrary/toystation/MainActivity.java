@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText email, pwd, nameKid, nameMother, nameFather, phoneMother, phoneFather, deposit, regCharges, dateOfMembership;
+    EditText email, pwd, nameKid, nameMother, nameFather, phoneMother, phoneFather, deposit, regCharges, dateOfMembership, id;
     Button submit;
     FirebaseFirestore db;
     FirebaseUser CurrentUser;
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         phoneFather = findViewById(R.id.phoneFatherInput);
         regCharges = findViewById(R.id.regChargesInput);
         dateOfMembership = findViewById(R.id.dateOfMembershipInput);
+        id = findViewById(R.id.idInput);
         submit = findViewById(R.id.submit);
 
         db = FirebaseFirestore.getInstance();
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                         CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
                         //FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>();
                         UID = CurrentUser.getUid();
+                        Map<String, Object> userId = new HashMap<>();
+                        userId.put("id", id.getText().toString());
+                        db.collection("UserTypeCategorize").document(UID).set(userId);
                         Map<String, Object> userDetails = new HashMap<>();
                         userDetails.put("NameOfKid", nameKid.getText().toString());
                         userDetails.put("MotherName", nameMother.getText().toString());
@@ -90,10 +94,11 @@ public class MainActivity extends AppCompatActivity {
                         userDetails.put("RegistrationCharges", regCharges.getText().toString());
                         userDetails.put("DateOfMembership", dateOfMembership.getText().toString());
                         userDetails.put("Deposit", deposit.getText().toString());
-                        db.collection("users").document(UID).set(userDetails);
+                        db.collection("users").document(id.getText().toString()).set(userDetails);
                         Toast.makeText(MainActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                         email.setText("");
                         pwd.setText("");
+                        id.setText("");
                         nameKid.setText("");
                         nameMother.setText("");
                         nameFather.setText("");
