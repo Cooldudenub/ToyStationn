@@ -54,10 +54,14 @@ public class MainActivity extends AppCompatActivity {
                 nameMother.setError("Name cannot be empty!");
             } else if (nameFather.getText().toString().isEmpty()) {
                 nameFather.setError("Name cannot be empty!");
-            } else if (phoneMother.getText().toString().isEmpty() && (phoneMother.getText().toString().length() != 10)) {
-                phoneMother.setError("Phone length should be 10!");
-            } else if (phoneFather.getText().toString().isEmpty() && (phoneFather.getText().toString().length() != 10)) {
-                phoneFather.setError("Phone length should be 10!");
+            } else if (phoneMother.getText().toString().isEmpty() && (phoneMother.getText().toString().length() != 10) && phoneFather.getText().toString().isEmpty() && (phoneFather.getText().toString().length() != 10)) {
+                Toast.makeText(this, "Enter atleast 1 valid phone number", Toast.LENGTH_SHORT).show();
+                if (phoneMother.getText().toString().length() != 10 && !phoneMother.getText().toString().equals("")){
+                    phoneMother.setError("Enter valid phone number");
+                }
+                if (phoneFather.getText().toString().length() != 10 && !phoneFather.getText().toString().equals("")){
+                    phoneFather.setError("Enter valid phone number");
+                }
             } else if (regCharges.getText().toString().isEmpty()) {
                 regCharges.setError("Name cannot be empty!");
             } else if (deposit.getText().toString().isEmpty()) {
