@@ -1,7 +1,10 @@
 package com.toylibrary.toystation;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
+import android.util.Base64;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,8 +15,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,8 +95,28 @@ public class MainActivity extends AppCompatActivity {
                         CurrentUser = FirebaseAuth.getInstance().getCurrentUser();
                         //FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>();
                         UID = CurrentUser.getUid();
+
+                        try {
+                            File file = new File("password.txt");
+                            if (!file.exists()) {
+                                file.createNewFile();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        writeToTxt(Password);
+
+                        try {
+                            String encryptedOutput = encryptFunct();
+                            writeToTxt(encryptedOutput);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
                         Map<String, Object> userId = new HashMap<>();
                         userId.put("id", id.getText().toString());
+                        userId.put("pwd", readFromTxt());
                         db.collection("UserTypeCategorize").document(UID).set(userId);
                         Map<String, Object> userDetails = new HashMap<>();
                         userDetails.put("NameOfKid", nameKid.getText().toString());
@@ -113,5 +147,73 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+
+    private void writeToTxt(String prescription) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("password.txt", Context.MODE_PRIVATE));
+            outputStreamWriter.write(prescription);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String encryptFunct() throws Exception {
+        String encryptInputText = readFromTxt();
+        SecretKeySpec encryptionKey = hashKeyGenerator();
+        @SuppressLint("GetInstance") Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, encryptionKey);
+        byte[] encVal = cipher.doFinal(encryptInputText.getBytes());
+        return Base64.encodeToString(encVal, Base64.DEFAULT);
+    }
+
+    private String readFromTxt() {
+        String result = "";
+        InputStream inputStream = null;
+        try {
+            inputStream = openFileInput("password.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (inputStream != null) {
+
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String tempString = "";
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while (true) {
+                try {
+                    if ((tempString = bufferedReader.readLine()) == null) {
+                        break;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                stringBuilder.append(tempString).append("\n");
+
+            }
+
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            result = stringBuilder.toString();
+        }
+        return result;
+    }
+
+    private SecretKeySpec hashKeyGenerator() throws Exception {
+        byte[] inputData = "6969696969".getBytes();
+        byte[] outputData;
+        MessageDigest shaVal = MessageDigest.getInstance("SHA-256");
+        shaVal.update(inputData);
+        outputData = shaVal.digest();
+        return new SecretKeySpec(outputData, "AES");
     }
 }
