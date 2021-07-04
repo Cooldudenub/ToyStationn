@@ -12,10 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class stocks extends AppCompatActivity {
 
     Button submitProd;
-    EditText prodId, prodName;
+    EditText prodId, prodName, prodPrice, prodPiece;
     RadioGroup stock;
     int radioButton;
     RadioButton ts, tsw;
@@ -30,12 +33,14 @@ public class stocks extends AppCompatActivity {
         submitProd = findViewById(R.id.submitprod);
         prodId = findViewById(R.id.prodIdInput);
         prodName = findViewById(R.id.prodNameInput);
+        prodPrice = findViewById(R.id.prodPriceInput);
+        prodPiece = findViewById(R.id.prodPieceInput);
         stock = findViewById(R.id.stock);
         ts = findViewById(R.id.ts);
         tsw = findViewById(R.id.tsw);
 
         db = FirebaseFirestore.getInstance();
-//
+
         submitProd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,21 +51,25 @@ public class stocks extends AppCompatActivity {
                 } else if (stock.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(getApplicationContext(), "Select stock type!", Toast.LENGTH_SHORT).show();
                 } else {
-//                    Map<String, Object> prod = new HashMap<>();
-//                    prod.put(prodId.getText().toString(), prodName.getText().toString());
+                    Map<String, Object> prod = new HashMap<>();
+                    prod.put("Product Name", prodName.getText().toString());
+                    prod.put("Product Price", prodPrice.getText().toString());
+                    prod.put("Product Piece", prodPiece.getText().toString());
                     radioButton = stock.getCheckedRadioButtonId();
 
                     if (ts.isChecked()) {
-                        db.collection("Products").document("ts").update(prodId.getText().toString(), prodName.getText().toString());
+                        db.collection("TS").document(prodId.getText().toString()).set(prod);
                         Toast.makeText(getApplicationContext(), "hua!", Toast.LENGTH_SHORT).show();
                     } else {
-                        db.collection("Products").document("tsw").update(prodId.getText().toString(), prodName.getText().toString());
+                        db.collection("TSW").document(prodId.getText().toString()).set(prod);
                         Toast.makeText(getApplicationContext(), "TSW hua!", Toast.LENGTH_SHORT).show();
 
                     }
                     Toast.makeText(stocks.this, "Success!", Toast.LENGTH_SHORT).show();
                     prodId.setText("");
                     prodName.setText("");
+                    prodPrice.setText("");
+                    prodPiece.setText("");
                     //stock.clearCheck();
                 }
             }
