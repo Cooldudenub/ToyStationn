@@ -13,4 +13,8 @@
     <string name="date_of_membership">Date of Membership</string>
     <string name="submit">Submit</string>
     <string name="id">id</string>
+    <string name="ts">ts</string>
+    <string name="tsw">tsw</string>
+    <string name="product_id">Product ID</string>
+    <string name="product_name">Product name</string>
 </resources>
