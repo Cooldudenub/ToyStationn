@@ -67,6 +67,8 @@ public class stocks extends AppCompatActivity {
                     prodName.setText("");
                     prodPrice.setText("");
                     prodPiece.setText("");
+                    prodId.requestFocus();
+
                     //stock.clearCheck();
                 }
             }
