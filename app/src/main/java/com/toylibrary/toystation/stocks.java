@@ -59,11 +59,8 @@ public class stocks extends AppCompatActivity {
 
                     if (ts.isChecked()) {
                         db.collection("TS").document(prodId.getText().toString()).set(prod);
-                        Toast.makeText(getApplicationContext(), "hua!", Toast.LENGTH_SHORT).show();
                     } else {
                         db.collection("TSW").document(prodId.getText().toString()).set(prod);
-                        Toast.makeText(getApplicationContext(), "TSW hua!", Toast.LENGTH_SHORT).show();
-
                     }
                     Toast.makeText(stocks.this, "Success!", Toast.LENGTH_SHORT).show();
                     prodId.setText("");
