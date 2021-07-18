@@ -31,11 +31,11 @@ public class stocks extends AppCompatActivity {
         setContentView(R.layout.activity_stocks);
 
         submitProd = findViewById(R.id.submitprod);
-        prodId = findViewById(R.id.prodIdInput);
-        prodName = findViewById(R.id.prodNameInput);
+        prodId = findViewById(R.id.BookIdInput);
+        prodName = findViewById(R.id.BookNameInput);
         prodPrice = findViewById(R.id.prodPriceInput);
         prodPiece = findViewById(R.id.prodPieceInput);
-        stock = findViewById(R.id.stock);
+        stock = findViewById(R.id.Bookstock);
         ts = findViewById(R.id.ts);
         tsw = findViewById(R.id.tsw);
 

@@ -19,4 +19,17 @@
     <string name="product_name">Product Name</string>
     <string name="product_price">Product Price</string>
     <string name="product_piece">Product Piece</string>
+    <string name="mythology">mythology</string>
+    <string name="phonics">phonics</string>
+    <string name="abc">abc</string>
+    <string name="_123">123</string>
+    <string name="picture">picture</string>
+    <string name="sparkle">sparkle</string>
+    <string name="series">series</string>
+    <string name="flipflap">flipflap</string>
+    <string name="story">story</string>
+    <string name="game">game</string>
+    <string name="book_name">book name</string>
+    <string name="Book_id">Book Id</string>
+    <string name="Book_name">Book Name</string>
 </resources>
