@@ -23,12 +23,12 @@
     <string name="phonics">phonics</string>
     <string name="abc">abc</string>
     <string name="_123">123</string>
-    <string name="picture">picture</string>
-    <string name="sparkle">sparkle</string>
+    <string name="picture">picture books</string>
+    <string name="sparkle">sparkle books</string>
     <string name="series">series</string>
-    <string name="flipflap">flipflap</string>
-    <string name="story">story</string>
-    <string name="game">game</string>
+    <string name="flipflap">flipflap books</string>
+    <string name="story">story books</string>
+    <string name="game">game books</string>
     <string name="book_name">book name</string>
     <string name="Book_id">Book Id</string>
     <string name="Book_name">Book Name</string>
