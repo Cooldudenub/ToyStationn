@@ -44,7 +44,7 @@ public class book_stock extends AppCompatActivity {
         flipflap = findViewById(R.id.flipflap);
         story = findViewById(R.id.story);
         game = findViewById(R.id.game);
-
+        //noob
         db = FirebaseFirestore.getInstance();
 
         submitProd.setOnClickListener(new View.OnClickListener() {
